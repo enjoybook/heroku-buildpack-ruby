@@ -309,8 +309,6 @@ SHELL
       ENV["GEM_PATH"] = slug_vendor_base
       ENV["GEM_HOME"] = slug_vendor_base
       ENV["PATH"]     = default_path
-      ENV["PATH"]     = "#{Dir.pwd}/vendor/imagemagick/bin:#{ENV['PATH']}"
-      topic(ENV['PATH'])
     end
   end
 
