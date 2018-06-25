@@ -309,17 +309,9 @@ SHELL
       ENV["GEM_PATH"] = slug_vendor_base
       ENV["GEM_HOME"] = slug_vendor_base
       ENV["PATH"]     = default_path
-      topic("#{ENV['PATH']}")
-      topic("#{ENV['PKG_CONFIG_PATH']}")
+      ENV["PKG_CONFIG_PATH"] = "#{Dir.pwd}/vendor/imagemagick/lib/pkgconfig"
+      ENV["BUNDLE_BUILD__RMAGICK"]= "--with-opt-dir=#{Dir.pwd}/vendor/imagemagick"
     end
-    im_path = "#{Dir.pwd}/vendor/imagemagick"
-    im_files = Dir["#{im_path}/**/*"]
-    topic("IMDIR: #{im_files}")
-
-    pwd = Dir.pwd
-    vendor = "#{pwd}/vendor"
-    vendor_files = Dir["#{vendor}/**/*"]
-    topic("Vendor: #{vendor_files}")
   end
 
   # Sets up the environment variables for subsequent processes run by
