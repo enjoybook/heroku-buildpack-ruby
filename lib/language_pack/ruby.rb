@@ -314,12 +314,12 @@ SHELL
     end
     im_path = "#{Dir.pwd}/vendor/imagemagick"
     im_files = Dir["#{im_path}/**/*"]
-    topc("IMDIR: #{im_files}")
+    topic("IMDIR: #{im_files}")
 
     pwd = Dir.pwd
     vendor = "#{pwd}/vendor"
     vendor_files = Dir["#{vendor}/**/*"]
-    topc("Vendor: #{vendor_files}")
+    topic("Vendor: #{vendor_files}")
   end
 
   # Sets up the environment variables for subsequent processes run by
