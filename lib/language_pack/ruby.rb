@@ -142,7 +142,6 @@ WARNING
     # breaking require. This only applies to Ruby 1.9.2 and 1.8.7.
     safe_binstubs = binstubs_relative_paths - ["bin"]
     paths         = [
-      "#{Dir.pwd}/vendor/imagemagick/bin",
       ENV["PATH"],
       "bin",
       system_paths,
@@ -310,8 +309,8 @@ SHELL
       ENV["GEM_PATH"] = slug_vendor_base
       ENV["GEM_HOME"] = slug_vendor_base
       ENV["PATH"]     = default_path
-      ENV["PKG_CONFIG_PATH"] = "#{Dir.pwd}/vendor/imagemagick/lib/pkgconfig"
-      ENV["BUNDLE_BUILD__RMAGICK"]= "--with-opt-dir=#{Dir.pwd}/vendor/imagemagick"
+      ENV["PATH"]     = "#{Dir.pwd}/vendor/imagemagick/bin:#{ENV['PATH']}"
+      topic(ENV['PATH'])
     end
   end
 
@@ -653,7 +652,9 @@ WARNING
             "LIBRARY_PATH"                  => noshellescape("#{yaml_lib}:$LIBRARY_PATH"),
             "RUBYOPT"                       => syck_hack,
             "NOKOGIRI_USE_SYSTEM_LIBRARIES" => "true",
-            "BUNDLE_DISABLE_VERSION_CHECK"  => "true"
+            "BUNDLE_DISABLE_VERSION_CHECK"  => "true",
+            "PKG_CONFIG_PATH"               => "#{pwd}/vendor/imagemagick/lib/pkgconfig",
+            "BUNDLE_BUILD__RMAGICK"         => "--with-opt-dir=#{pwd}/vendor/imagemagick"
           }
           env_vars["JAVA_HOME"] = noshellescape("#{pwd}/$JAVA_HOME") if ruby_version.jruby?
           env_vars["BUNDLER_LIB_PATH"] = "#{bundler_path}" if ruby_version.ruby_version == "1.8.7"
